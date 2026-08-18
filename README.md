@@ -133,3 +133,11 @@ app/build/outputs/apk/release/菜鸟智脑-release-v<版本号>.apk
 ## 仓库属性
 
 该仓库设置为 **Private**，用于保存菜鸟智脑源代码、开发记录、自动构建配置和版本发布资料。
+
+## GitHub 仓库
+
+- 地址：<https://github.com/5043494/cainiao-brain-lsposed>
+- 可见性：Private
+- 默认分支：`main`
+- 本机自动同步：已启用
+- 持续集成：Android CI（每次 push、Pull Request 和手动触发时构建）
