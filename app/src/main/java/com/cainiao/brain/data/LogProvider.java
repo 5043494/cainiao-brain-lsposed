@@ -19,6 +19,8 @@ public class LogProvider extends ContentProvider {
         if (getContext() == null) return result;
         if ("capture_enabled".equals(method)) {
             result.putBoolean("enabled", LogStore.captureEnabled(getContext()));
+        } else if ("points_enabled".equals(method)) {
+            result.putBoolean("enabled", LogStore.pointsEnabled(getContext()));
         } else if ("append".equals(method) && extras != null) {
             LogStore.append(getContext(), extras.getString("type"), extras.getString("source"), extras.getString("message"));
             result.putBoolean("ok", true);

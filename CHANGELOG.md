@@ -2,6 +2,28 @@
 
 本项目遵循“版本号 + 日期 + 变更分类”的记录方式。每次功能、修复、性能或构建配置变动都应补充到本文件。
 
+## [1.1.0] - 2026-08-19
+
+### 积分模块
+
+- 根据 3.4 MB 真机完整抓包记录梳理裹酱任务链路；
+- 设置页新增“积分”模块；
+- 积分模块新增“赚裹酱”开关；
+- 新增裹酱页面初始化、引导阶段、完成校验、外部任务完成、定时任务完成、喂养交互和奖励领取流程识别；
+- 识别结果写入“全部运行日志”，包含流程阶段、API 名称和毫秒级时间戳；
+- 开关配置可实时通知已注入的菜鸟进程，并在重新启动菜鸟后持久生效；
+- 流程识别仅跟随菜鸟客户端的正常任务与领奖行为，不重放请求、不复用会话凭证。
+
+### 已识别接口
+
+- `mtop.cainiao.cncreditmarket.breed.selectandinitcredit.cn`；
+- `mtop.cainiao.cncreditmarket.newguide.currentstage.cn`；
+- `mtop.cncreditmarket.task.checkfinish.cn`；
+- `mtop.cnactivitycenter.task.finishexternaltask.cn`；
+- `mtop.cainiao.cncreditmarket.stealgj.finishtask.fixedtime.cn`；
+- `mtop.cainiao.cncreditmarket.breed.feed.cn`；
+- `mtop.cncreditmarket.task.getaward.cn`。
+
 ## [1.0.2] - 2026-08-18
 
 ### 性能优化

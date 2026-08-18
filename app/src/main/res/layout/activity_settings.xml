@@ -17,6 +17,15 @@
                 <androidx.appcompat.widget.SwitchCompat android:id="@+id/switch_capture" android:layout_width="wrap_content" android:layout_height="wrap_content" android:buttonTint="@color/purple" />
             </LinearLayout>
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:text="切换后重新启动菜鸟即可完整应用。" android:textColor="@color/muted" android:textSize="12sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:layout_marginBottom="10dp" android:text="积分" android:textColor="@color/orange" android:textSize="18sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/row_points" android:layout_width="match_parent" android:layout_height="104dp" android:background="@drawable/bg_card_orange" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:orientation="horizontal" android:padding="18dp">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="赚裹酱" android:textColor="@color/white" android:textSize="20sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="识别并记录裹酱任务、进度校验与奖励流程" android:textColor="@color/white" android:textSize="13sp" />
+                </LinearLayout>
+                <androidx.appcompat.widget.SwitchCompat android:id="@+id/switch_points" android:layout_width="wrap_content" android:layout_height="wrap_content" android:buttonTint="@color/yellow" />
+            </LinearLayout>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:text="开启后，模块会在全部运行日志中标记裹酱任务流程节点。" android:textColor="@color/muted" android:textSize="12sp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

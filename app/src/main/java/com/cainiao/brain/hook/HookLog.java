@@ -14,6 +14,7 @@ final class HookLog {
     private static final Uri PROVIDER = Uri.parse("content://com.cainiao.brain.logs");
     private static volatile Context context;
     private static volatile boolean enabled = true;
+    private static volatile boolean pointsEnabled;
     private static volatile long lastConfigRead;
 
     private HookLog() {}
@@ -29,9 +30,19 @@ final class HookLog {
         runtime("CONFIG", "菜鸟抓包实时切换为：" + value);
     }
 
+    static void setPointsEnabled(boolean value) {
+        pointsEnabled = value;
+        runtime("积分模块", "赚裹酱流程识别实时切换为：" + value);
+    }
+
     static boolean isEnabled() {
         refreshEnabled(false);
         return enabled;
+    }
+
+    static boolean isPointsEnabled() {
+        refreshEnabled(false);
+        return pointsEnabled;
     }
 
     private static void refreshEnabled(boolean force) {
@@ -42,6 +53,8 @@ final class HookLog {
         try {
             Bundle result = c.getContentResolver().call(PROVIDER, "capture_enabled", null, null);
             if (result != null) enabled = result.getBoolean("enabled", true);
+            Bundle points = c.getContentResolver().call(PROVIDER, "points_enabled", null, null);
+            if (points != null) pointsEnabled = points.getBoolean("enabled", false);
         } catch (Throwable e) {
             XposedBridge.log("菜鸟智脑：读取配置失败，沿用当前值 - " + e);
         }
@@ -49,6 +62,7 @@ final class HookLog {
 
     static void runtime(String source, String message) { send("runtime", source, message); }
     static void packet(String source, String message) { if (isEnabled()) send("packet", source, message); }
+    static void points(String source, String message) { if (isPointsEnabled()) send("runtime", source, message); }
 
     private static void send(String type, String source, String message) {
         Context c = getContext();

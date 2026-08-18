@@ -94,4 +94,15 @@ public final class LogStore {
                 .edit().putBoolean("capture_enabled", enabled).apply();
         append(context, TYPE_RUNTIME, "SETTINGS", "菜鸟抓包已" + (enabled ? "开启" : "关闭"));
     }
+
+    public static boolean pointsEnabled(Context context) {
+        return context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+                .getBoolean("points_enabled", false);
+    }
+
+    public static void setPointsEnabled(Context context, boolean enabled) {
+        context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+                .edit().putBoolean("points_enabled", enabled).apply();
+        append(context, TYPE_RUNTIME, "SETTINGS", "赚裹酱流程识别已" + (enabled ? "开启" : "关闭"));
+    }
 }

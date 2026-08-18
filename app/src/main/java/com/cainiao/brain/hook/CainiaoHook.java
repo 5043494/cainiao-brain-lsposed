@@ -43,7 +43,8 @@ public class CainiaoHook implements IXposedHookLoadPackage {
             IntentFilter filter = new IntentFilter("com.cainiao.brain.CONFIG_CHANGED");
             BroadcastReceiver receiver = new BroadcastReceiver() {
                 @Override public void onReceive(Context c, Intent i) {
-                    HookLog.setEnabled(i.getBooleanExtra("enabled", true));
+                    if (i.hasExtra("capture_enabled")) HookLog.setEnabled(i.getBooleanExtra("capture_enabled", true));
+                    if (i.hasExtra("points_enabled")) HookLog.setPointsEnabled(i.getBooleanExtra("points_enabled", false));
                 }
             };
             if (Build.VERSION.SDK_INT >= 33) context.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
@@ -80,6 +81,7 @@ public class CainiaoHook implements IXposedHookLoadPackage {
                             String api = stringCall(request, "getApiName");
                             String version = stringCall(request, "getVersion");
                             String data = stringCall(request, "getData");
+                            observePointsFlow(api);
                             logDeduplicated("MTOP 请求", api + " v" + version + "\n参数: " + data);
                         } catch (Throwable e) {
                             HookLog.runtime("HOOK", "读取 MTOP 请求失败：" + e);
@@ -143,5 +145,24 @@ public class CainiaoHook implements IXposedHookLoadPackage {
         Long old = RECENT.put(hash, now);
         if (old == null || now - old > 1500) HookLog.packet(source, message);
         if (RECENT.size() > 500) RECENT.clear();
+    }
+
+    private static void observePointsFlow(String api) {
+        if (api == null || !HookLog.isPointsEnabled()) return;
+        String lower = api.toLowerCase();
+        String stage = null;
+        if (lower.contains("breed.selectandinitcredit")) stage = "裹酱页面与积分账户初始化";
+        else if (lower.contains("newguide.currentstage")) stage = "查询当前引导阶段";
+        else if (lower.contains("task.checkfinish")) stage = "校验任务完成状态";
+        else if (lower.contains("task.finishexternaltask")) stage = "上报外部任务完成";
+        else if (lower.contains("stealgj.finishtask.fixedtime")) stage = "上报定时任务完成";
+        else if (lower.contains("breed.feed")) stage = "执行裹酱喂养交互";
+        else if (lower.contains("task.getaward")) stage = "菜鸟客户端发起奖励领取";
+        if (stage != null) {
+            long now = System.currentTimeMillis();
+            int hash = ("POINTS:" + lower).hashCode();
+            Long old = RECENT.put(hash, now);
+            if (old == null || now - old > 1500) HookLog.points("裹酱任务", stage + "\nAPI: " + api);
+        }
     }
 }
