@@ -1,0 +1,2 @@
+-keep class com.cainiao.brain.hook.** { *; }
+-keep class com.cainiao.brain.data.LogProvider { *; }

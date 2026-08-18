@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/paper" android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="76dp" android:background="@color/ink" android:gravity="center_vertical" android:orientation="horizontal" android:paddingStart="18dp" android:paddingEnd="18dp">
+        <TextView android:id="@+id/btn_back" android:layout_width="48dp" android:layout_height="48dp" android:gravity="center" android:text="‹" android:textColor="@color/white" android:textSize="42sp" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="设置" android:textColor="@color/white" android:textSize="25sp" android:textStyle="bold" />
+    </LinearLayout>
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="18dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:text="基础" android:textColor="@color/purple" android:textSize="18sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/row_capture" android:layout_width="match_parent" android:layout_height="104dp" android:background="@drawable/bg_panel" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:orientation="horizontal" android:padding="18dp">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="菜鸟抓包" android:textColor="@color/ink" android:textSize="20sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="记录菜鸟 MTOP 网络请求与响应" android:textColor="@color/muted" android:textSize="13sp" />
+                </LinearLayout>
+                <androidx.appcompat.widget.SwitchCompat android:id="@+id/switch_capture" android:layout_width="wrap_content" android:layout_height="wrap_content" android:buttonTint="@color/purple" />
+            </LinearLayout>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:text="切换后重新启动菜鸟即可完整应用。" android:textColor="@color/muted" android:textSize="12sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">菜鸟智脑</string>
+    <string name="module_subtitle">Cainiao Intelligence · LSPosed</string>
+    <string name="runtime_log">全部运行日志</string>
+    <string name="packet_log">抓包日志</string>
+    <string name="settings">设置</string>
+</resources>

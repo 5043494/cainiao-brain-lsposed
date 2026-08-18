@@ -1,0 +1,11 @@
+<resources>
+    <color name="ink">#171126</color>
+    <color name="paper">#FFF8EC</color>
+    <color name="orange">#FF5A1F</color>
+    <color name="orange_dark">#D83B00</color>
+    <color name="purple">#6C2BFF</color>
+    <color name="cyan">#00D6C9</color>
+    <color name="yellow">#FFD300</color>
+    <color name="white">#FFFFFF</color>
+    <color name="muted">#746D80</color>
+</resources>

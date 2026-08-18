@@ -1,0 +1,25 @@
+# Gradle / Android build outputs
+.gradle/
+**/build/
+*.apk
+*.aab
+
+# Machine-local Android SDK configuration
+local.properties
+
+# IDE / OS
+.idea/
+*.iml
+.DS_Store
+
+# Signing material and secrets
+*.jks
+*.keystore
+keystore.properties
+.env
+.env.*
+
+# Runtime logs and captures
+*.log
+captures/
+logs/

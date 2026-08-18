@@ -1,0 +1,20 @@
+#!/bin/sh
+# 每次提交后自动同步当前提交，并在 .git 中保留本机同步日志。
+ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+LOG="$ROOT/.git/cainiao-sync.log"
+NOW=$(date '+%Y-%m-%d %H:%M:%S %z')
+COMMIT=$(git rev-parse --short HEAD 2>/dev/null)
+BRANCH=$(git branch --show-current 2>/dev/null)
+{
+  echo "[$NOW] 开始同步 commit=$COMMIT branch=${BRANCH:-detached}"
+  if ! git remote get-url origin >/dev/null 2>&1; then
+    echo "[$NOW] 跳过：尚未配置 origin"
+  elif git push origin HEAD; then
+    echo "[$NOW] 同步成功 commit=$COMMIT"
+  else
+    CODE=$?
+    echo "[$NOW] 同步失败 code=$CODE commit=$COMMIT；提交仍保留在本地，后续可执行 git push 重试"
+  fi
+  echo
+} >>"$LOG" 2>&1
+exit 0
